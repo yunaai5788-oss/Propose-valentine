@@ -217,7 +217,8 @@ const texts = [
 ];
 
 function update(i){
-  document.getElementById("gif").src = gifs[i];
+  const img = document.getElementById("gif");
+  img.src = gifs[i] + "?v=" + Math.random(); // 🔥 cache killer
   document.getElementById("text").innerText = texts[i];
 }
 
