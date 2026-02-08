@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Proposal</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nandani 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffd1e8,#e5d9ff);
+  font-family:'Poppins',sans-serif;
+}
+
+.card{
+  background:#fff;
+  width:90%;
+  max-width:360px;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 15px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+  font-family:'Pacifico',cursive;
+  color:#ff3f81;
+}
+
+img{
+  width:100%;
+  max-height:220px;
+  object-fit:contain;
+  margin:15px 0;
+}
+
+#text{
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+
+button{
+  padding:10px 22px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+}
+
+#yes{
+  background:#ff3f81;
+  color:white;
+}
+
+#no{
+  background:#ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Nandani 💖</h1>
+
+  <!-- GIF -->
+  <img id="gif" src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif">
+
+  <!-- Text -->
+  <div id="text">Will you be my Valentine? 💍</div>
+
+  <div class="buttons">
+    <button id="yes">YES 💖</button>
+    <button id="no">NO 😢</button>
+  </div>
+</div>
+
+<script>
+let noCount = 0;
+
+const gifs = [
+  "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif", // normal
+  "https://media.giphy.com/media/j5QcmXoFWl4Q0/giphy.gif",     // sad
+  "https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif",    // crying
+  "https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif",    // heart broken
+  "https://media.giphy.com/media/26ufcVAp3AiJJsrIs/giphy.gif" // very sad
+];
+
+const texts = [
+  "Will you be my Valentine? 💍",
+  "Kya tum mujhse pyaar nahi karti? 😔",
+  "Soch lo na please… 🥺",
+  "Dil toot raha hai mera 💔",
+  "Last chance… sach me 😭"
+];
+
+document.getElementById("no").addEventListener("click",()=>{
+  if(noCount < gifs.length-1){
+    noCount++;
+    document.getElementById("gif").src = gifs[noCount];
+    document.getElementById("text").innerText = texts[noCount];
+  }
+});
+
+document.getElementById("yes").addEventListener("click",()=>{
+  document.getElementById("gif").src =
+  "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif";
+  document.getElementById("text").innerText =
+  "You just made me the happiest person alive 🥺❤️";
+});
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
