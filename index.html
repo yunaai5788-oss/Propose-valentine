@@ -17,44 +17,64 @@
 
 body{
   min-height:100vh;
-  background:linear-gradient(135deg,#ffd1e8,#e5d9ff);
+  background:
+    radial-gradient(circle at top left, #ffd6e8, transparent 40%),
+    radial-gradient(circle at bottom right, #e6d9ff, transparent 40%),
+    linear-gradient(135deg,#ffb6d5,#e9dcff);
   display:flex;
   justify-content:center;
   align-items:center;
+  overflow:hidden;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  bottom:-50px;
+  color:rgba(255,64,129,0.3);
+  font-size:20px;
+  animation:float 10s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
 }
 
 .card{
   width:92%;
   max-width:380px;
-  background:#fff;
-  border-radius:24px;
-  padding:22px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(6px);
+  border-radius:26px;
+  padding:24px;
   text-align:center;
-  box-shadow:0 15px 35px rgba(0,0,0,0.25);
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  z-index:2;
 }
 
 h1{
   font-family:'Pacifico',cursive;
   color:#ff3f81;
-  font-size:30px;
-  margin-bottom:12px;
+  font-size:32px;
+  margin-bottom:14px;
 }
 
-/* GIF AREA – ALWAYS VISIBLE */
+/* GIF */
 #gif{
   width:100%;
   max-width:320px;
   height:220px;
   object-fit:contain;
   border-radius:18px;
-  margin:12px auto 16px;
+  margin:12px auto 18px;
   display:block;
   pointer-events:none;
 }
 
 #text{
   font-size:18px;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 /* Buttons */
@@ -65,7 +85,7 @@ h1{
 }
 
 button{
-  padding:12px 26px;
+  padding:13px 28px;
   border:none;
   border-radius:30px;
   font-size:16px;
@@ -80,44 +100,68 @@ button{
 
 @keyframes pulse{
   0%{transform:scale(1);}
-  50%{transform:scale(1.1);}
+  50%{transform:scale(1.12);}
   100%{transform:scale(1);}
 }
 
 #no{
   background:#e0e0e0;
 }
+
+/* Music hint */
+.music-hint{
+  font-size:12px;
+  color:#888;
+  margin-top:10px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- floating hearts -->
+<script>
+for(let i=0;i<18;i++){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  h.style.fontSize=(14+Math.random()*18)+"px";
+  document.body.appendChild(h);
+}
+</script>
+
 <div class="card">
   <h1>Nandani 💖</h1>
 
-  <!-- GIF -->
   <img id="gif" src="gif-start.gif" alt="gif">
 
-  <!-- TEXT -->
   <div id="text">Will you be my Valentine? 💍</div>
 
-  <!-- BUTTONS -->
   <div class="buttons">
     <button id="yes">YES 💖</button>
     <button id="no">NO 😢</button>
   </div>
+
+  <div class="music-hint">🎵 Tap a button to feel the music</div>
 </div>
+
+<!-- Background Music -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 let step = 0;
+let musicStarted = false;
 
-/* CHANGE ONLY FILENAMES IF YOU WANT */
 const gifs = [
-  "gif-start.gif", // start
-  "gif-no1.gif",   // no 1
-  "gif-no2.gif",   // no 2
-  "gif-no3.gif",   // no 3
-  "gif-yes.gif"    // yes (kiss)
+  "gif-start.gif",
+  "gif-no1.gif",
+  "gif-no2.gif",
+  "gif-no3.gif",
+  "gif-yes.gif"
 ];
 
 const texts = [
@@ -128,24 +172,31 @@ const texts = [
   "Come here… I want you forever 💋❤️"
 ];
 
+function playMusic(){
+  if(!musicStarted){
+    document.getElementById("bgm").play();
+    musicStarted = true;
+  }
+}
+
 function updateScreen(i){
-  const img = document.getElementById("gif");
-  img.src = gifs[i] + "?v=" + Date.now(); // cache safe
+  playMusic();
+  document.getElementById("gif").src = gifs[i] + "?v=" + Date.now();
   document.getElementById("text").innerText = texts[i];
 }
 
-document.getElementById("no").addEventListener("click",()=>{
+document.getElementById("no").onclick = ()=>{
   if(step < 3){
     step++;
     updateScreen(step);
   }
-});
+};
 
-document.getElementById("yes").addEventListener("click",()=>{
+document.getElementById("yes").onclick = ()=>{
   step = 4;
   updateScreen(step);
-  document.getElementById("no").style.display = "none";
-});
+  document.getElementById("no").style.display="none";
+};
 </script>
 
 </body>
