@@ -198,69 +198,43 @@ button{
 </div>
 
 <script>
-
 let step = 0;
 
-/* GIFs for every stage (start → no → no → no → yes) */
-
 const gifs = [
-
-  "https://media.tenor.com/2roX3uxz_68AAAAC/couple-love.gif",          // start
-
-  "https://media.tenor.com/6M8JfZs8HkMAAAAC/sad-couple.gif",          // no 1
-
-  "https://media.tenor.com/jn9KpQ4gkXAAAAAC/crying-cute.gif",         // no 2
-
-  "https://media.tenor.com/6QKx9Y7t4mQAAAAC/heart-broken.gif",        // no 3
-
-  "https://media.tenor.com/7XxK9KX4b3sAAAAC/romantic-kiss-couple.gif" // YES (long kiss)
-
+  "https://media.tenor.com/2roX3uxz_68AAAAC/couple-love.gif",
+  "https://media.tenor.com/6M8JfZs8HkMAAAAC/sad-couple.gif",
+  "https://media.tenor.com/jn9KpQ4gkXAAAAAC/crying-cute.gif",
+  "https://media.tenor.com/6QKx9Y7t4mQAAAAC/heart-broken.gif",
+  "https://media.tenor.com/7XxK9KX4b3sAAAAC/romantic-kiss-couple.gif"
 ];
 
 const texts = [
-
   "Will you be my Valentine? 💍",
-
   "Kya tum sach me mana kar rahi ho? 😔",
-
   "Dil toot raha hai mera… 🥺💔",
-
   "Last baar soch lo please… 😭",
-
   "Come here… I want you forever 💋❤️"
-
 ];
 
-/* NO button logic */
+function setGif(index){
+  const img = document.getElementById("gif");
+  img.src = gifs[index] + "?v=" + new Date().getTime(); // 🔥 FIX
+}
 
-document.getElementById("no").addEventListener("click",()=>{
-
+document.getElementById("no").onclick = () => {
   if(step < 3){
-
     step++;
-
-    document.getElementById("gif").src = gifs[step];
-
+    setGif(step);
     document.getElementById("text").innerText = texts[step];
-
   }
+};
 
-});
-
-/* YES button logic */
-
-document.getElementById("yes").addEventListener("click",()=>{
-
+document.getElementById("yes").onclick = () => {
   step = 4;
-
-  document.getElementById("gif").src = gifs[4];
-
+  setGif(step);
   document.getElementById("text").innerText = texts[4];
-
-  document.getElementById("no").style.display="none";
-
-});
-
+  document.getElementById("no").style.display = "none";
+};
 </script>
 
 </body>
