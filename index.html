@@ -201,11 +201,11 @@ button{
 let step = 0;
 
 const gifs = [
-  "https://media.tenor.com/2roX3uxz_68AAAAC/couple-love.gif",
-  "https://media.tenor.com/6M8JfZs8HkMAAAAC/sad-couple.gif",
-  "https://media.tenor.com/jn9KpQ4gkXAAAAAC/crying-cute.gif",
-  "https://media.tenor.com/6QKx9Y7t4mQAAAAC/heart-broken.gif",
-  "https://media.tenor.com/7XxK9KX4b3sAAAAC/romantic-kiss-couple.gif"
+  "start.gif",
+  "sad1.gif",
+  "sad2.gif",
+  "sad3.gif",
+  "kiss.gif"
 ];
 
 const texts = [
@@ -216,23 +216,21 @@ const texts = [
   "Come here… I want you forever 💋❤️"
 ];
 
-function setGif(index){
-  const img = document.getElementById("gif");
-  img.src = gifs[index] + "?v=" + new Date().getTime(); // 🔥 FIX
+function update(i){
+  document.getElementById("gif").src = gifs[i];
+  document.getElementById("text").innerText = texts[i];
 }
 
 document.getElementById("no").onclick = () => {
   if(step < 3){
     step++;
-    setGif(step);
-    document.getElementById("text").innerText = texts[step];
+    update(step);
   }
 };
 
 document.getElementById("yes").onclick = () => {
   step = 4;
-  setGif(step);
-  document.getElementById("text").innerText = texts[4];
+  update(step);
   document.getElementById("no").style.display = "none";
 };
 </script>
