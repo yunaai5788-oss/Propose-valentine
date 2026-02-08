@@ -1,211 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Nandani</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
-
-<html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nandani 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-
   margin:0;
-
   padding:0;
-
   box-sizing:border-box;
-
   font-family:'Poppins',sans-serif;
-
 }
 
 body{
-
   min-height:100vh;
-
   background:linear-gradient(135deg,#ffd1e8,#e5d9ff);
-
   display:flex;
-
   justify-content:center;
-
   align-items:center;
-
 }
 
 .card{
-
   width:92%;
-
   max-width:380px;
-
   background:#fff;
-
   border-radius:24px;
-
   padding:22px;
-
   text-align:center;
-
   box-shadow:0 15px 35px rgba(0,0,0,0.25);
-
 }
 
 h1{
-
   font-family:'Pacifico',cursive;
-
   color:#ff3f81;
-
   font-size:30px;
-
   margin-bottom:12px;
-
 }
 
-/* GIF – ALWAYS PRESENT */
-
+/* GIF AREA – ALWAYS VISIBLE */
 #gif{
-
   width:100%;
-
   max-width:320px;
-
-  height:230px;
-
+  height:220px;
   object-fit:contain;
-
   border-radius:18px;
-
-  margin:10px auto 15px;
-
+  margin:12px auto 16px;
   display:block;
-
-  pointer-events:none; /* buttons safe */
-
-  transition:0.3s ease;
-
+  pointer-events:none;
 }
 
 #text{
-
   font-size:18px;
-
-  margin:10px 0 18px;
-
+  margin-bottom:18px;
 }
 
 /* Buttons */
-
 .buttons{
-
   display:flex;
-
   justify-content:center;
-
   gap:16px;
-
 }
 
 button{
-
   padding:12px 26px;
-
   border:none;
-
   border-radius:30px;
-
   font-size:16px;
-
   cursor:pointer;
-
-  z-index:10;
-
 }
 
 #yes{
-
   background:#ff3f81;
-
   color:#fff;
-
   animation:pulse 1.4s infinite;
-
 }
 
 @keyframes pulse{
-
   0%{transform:scale(1);}
-
   50%{transform:scale(1.1);}
-
   100%{transform:scale(1);}
-
 }
 
 #no{
-
   background:#e0e0e0;
-
 }
-
 </style>
-
 </head>
 
 <body>
 
 <div class="card">
-
   <h1>Nandani 💖</h1>
 
-  <!-- SINGLE GIF AREA (never disappears) -->
+  <!-- GIF -->
+  <img id="gif" src="gif-start.gif" alt="gif">
 
-  <img id="gif"
-
-    src="https://media.tenor.com/2roX3uxz_68AAAAC/couple-love.gif"
-
-    alt="love gif">
-
+  <!-- TEXT -->
   <div id="text">Will you be my Valentine? 💍</div>
 
+  <!-- BUTTONS -->
   <div class="buttons">
-
     <button id="yes">YES 💖</button>
-
     <button id="no">NO 😢</button>
-
   </div>
-
 </div>
 
 <script>
 let step = 0;
 
+/* CHANGE ONLY FILENAMES IF YOU WANT */
 const gifs = [
-  "start.gif",
-  "sad1.gif",
-  "sad2.gif",
-  "sad3.gif",
-  "kiss.gif"
+  "gif-start.gif", // start
+  "gif-no1.gif",   // no 1
+  "gif-no2.gif",   // no 2
+  "gif-no3.gif",   // no 3
+  "gif-yes.gif"    // yes (kiss)
 ];
 
 const texts = [
@@ -216,30 +128,25 @@ const texts = [
   "Come here… I want you forever 💋❤️"
 ];
 
-function update(i){
+function updateScreen(i){
   const img = document.getElementById("gif");
-  img.src = gifs[i] + "?v=" + Math.random(); // 🔥 cache killer
+  img.src = gifs[i] + "?v=" + Date.now(); // cache safe
   document.getElementById("text").innerText = texts[i];
 }
 
-document.getElementById("no").onclick = () => {
+document.getElementById("no").addEventListener("click",()=>{
   if(step < 3){
     step++;
-    update(step);
+    updateScreen(step);
   }
-};
+});
 
-document.getElementById("yes").onclick = () => {
+document.getElementById("yes").addEventListener("click",()=>{
   step = 4;
-  update(step);
+  updateScreen(step);
   document.getElementById("no").style.display = "none";
-};
+});
 </script>
 
 </body>
-
-</html>
-    
-  </body>
-  
 </html>
