@@ -86,9 +86,20 @@ button{
   <h1>Nandani 💖</h1>
 
   <!-- GIF -->
-  <img id="gif" 
-src="https://media.tenor.com/1K7zZQzJ5XIAAAAC/love-cute.gif"
-style="width:100%; border-radius:15px;">
+  <img 
+  id="gif"
+  src="https://media.tenor.com/2roX3uxz_68AAAAC/cute-love.gif"
+  alt="love gif"
+  style="
+    width:100%;
+    max-width:300px;
+    min-height:180px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 15px;
+    border-radius:15px;
+  "
+>
   <!-- Text -->
   <div id="text">Will you be my Valentine? 💍</div>
 
@@ -126,10 +137,11 @@ document.getElementById("no").addEventListener("click",()=>{
 });
 
 document.getElementById("yes").addEventListener("click",()=>{
+  document.getElementById("yes").addEventListener("click",()=>{
   document.getElementById("gif").src =
-  "https://media.tenor.com/6fK6lJ9jY2gAAAAC/kiss-love.gif";
+  "https://media.tenor.com/YTw87WdiaasAAAAC/kiss-love.gif";
   document.getElementById("text").innerText =
-  "Come here… I love you kuchhu puchhuu 💋❤️";
+  "Come here… I love you 💋❤️";
 });
 </script>
 
