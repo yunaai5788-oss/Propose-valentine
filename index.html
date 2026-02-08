@@ -3,198 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nandani 💖</title>
+<title>For Nandani 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
 
 body{
   min-height:100vh;
-  background:
-    radial-gradient(circle at top left, #ffd6e8, transparent 40%),
-    radial-gradient(circle at bottom right, #e6d9ff, transparent 40%),
-    linear-gradient(135deg,#ffb6d5,#e9dcff);
+  background: linear-gradient(135deg,#ffb6c1,#ffc0cb,#ffd1dc);
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
 }
 
-/* Floating hearts */
-.heart{
-  position:absolute;
-  bottom:-50px;
-  color:rgba(255,64,129,0.3);
-  font-size:20px;
-  animation:float 10s linear infinite;
+/* floating hearts */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("https://i.imgur.com/8KZtFQH.png");
+  opacity:0.15;
+  animation:float 20s linear infinite;
 }
-
 @keyframes float{
-  from{transform:translateY(0);opacity:1;}
-  to{transform:translateY(-110vh);opacity:0;}
+  from{background-position:0 0;}
+  to{background-position:0 -2000px;}
 }
 
 .card{
+  background:white;
   width:92%;
-  max-width:380px;
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(6px);
-  border-radius:26px;
-  padding:24px;
+  max-width:360px;
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.2);
   text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,0.25);
   z-index:2;
 }
 
 h1{
   font-family:'Pacifico',cursive;
-  color:#ff3f81;
-  font-size:32px;
-  margin-bottom:14px;
+  color:#ff4d88;
+  font-size:36px;
+  margin-bottom:10px;
 }
 
-/* GIF */
-#gif{
+img{
   width:100%;
-  max-width:320px;
-  height:220px;
+  max-height:260px;
   object-fit:contain;
-  border-radius:18px;
-  margin:12px auto 18px;
-  display:block;
-  pointer-events:none;
+  border-radius:15px;
+  margin:15px 0;
 }
 
-#text{
+p{
   font-size:18px;
-  margin-bottom:20px;
+  margin:15px 0;
 }
 
-/* Buttons */
 .buttons{
   display:flex;
+  gap:15px;
   justify-content:center;
-  gap:16px;
+  margin-top:10px;
 }
 
 button{
-  padding:13px 28px;
   border:none;
+  padding:12px 22px;
   border-radius:30px;
-  font-size:16px;
+  font-size:18px;
   cursor:pointer;
 }
 
 #yes{
-  background:#ff3f81;
-  color:#fff;
-  animation:pulse 1.4s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.12);}
-  100%{transform:scale(1);}
+  background:#ff4d88;
+  color:white;
 }
 
 #no{
   background:#e0e0e0;
 }
 
-/* Music hint */
-.music-hint{
-  font-size:12px;
-  color:#888;
+.musicHint{
   margin-top:10px;
+  font-size:14px;
+  opacity:0.6;
 }
 </style>
 </head>
 
 <body>
 
-<!-- floating hearts -->
-<script>
-for(let i=0;i<18;i++){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerText="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(6+Math.random()*6)+"s";
-  h.style.fontSize=(14+Math.random()*18)+"px";
-  document.body.appendChild(h);
-}
-</script>
-
 <div class="card">
   <h1>Nandani 💖</h1>
 
-  <img id="gif" src="gif-start.gif" alt="gif">
+  <!-- GIF IMAGE -->
+  <img id="gif" src="start.gif" alt="gif">
 
-  <div id="text">Will you be my Valentine? 💍</div>
+  <!-- TEXT -->
+  <p id="text">Will you be my Valentine? 💍</p>
 
+  <!-- BUTTONS -->
   <div class="buttons">
-    <button id="yes">YES 💖</button>
+    <button id="yes">YES ✨</button>
     <button id="no">NO 😢</button>
   </div>
 
-  <div class="music-hint">🎵 Tap a button to feel the music</div>
+  <div class="musicHint">🎵 Tap any button to feel the music</div>
 </div>
 
-<!-- Background Music -->
+<!-- MUSIC -->
 <audio id="bgm" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-let step = 0;
-let musicStarted = false;
-
 const gifs = [
-  "gif-start.gif",
-  "gif-no1.gif",
-  "gif-no2.gif",
-  "gif-no3.gif",
-  "gif-yes.gif"
+  "gif-start.gif",      // 0 start
+  "gif-sad1.gif",       // 1 NO
+  "gif-sad2.gif",       // 2 NO again
+  "gif-sad3.gif",       // 3 last NO
+  "gif-kiss.gif"        // 4 YES final
 ];
 
 const texts = [
   "Will you be my Valentine? 💍",
-  "Kya tum sach me mana kar rahi ho? 😔",
-  "Dil toot raha hai mera… 🥺💔",
+  "Kya tum sach me mana kar rahi ho? 🥺",
+  "Dil toot raha hai mera… 💔",
   "Last baar soch lo please… 😭",
   "Come here… I want you forever 💋❤️"
 ];
 
-function playMusic(){
-  if(!musicStarted){
-    document.getElementById("bgm").play();
-    musicStarted = true;
-  }
-}
+let step = 0;
+const gif = document.getElementById("gif");
+const text = document.getElementById("text");
+const bgm = document.getElementById("bgm");
 
-function updateScreen(i){
-  playMusic();
-  document.getElementById("gif").src = gifs[i] + "?v=" + Date.now();
-  document.getElementById("text").innerText = texts[i];
+function playMusic(){
+  bgm.volume = 0.7;
+  bgm.play().catch(()=>{});
 }
 
 document.getElementById("no").onclick = ()=>{
+  playMusic();
   if(step < 3){
     step++;
-    updateScreen(step);
+    gif.src = gifs[step] + "?v=" + Date.now();
+    text.innerText = texts[step];
   }
 };
 
 document.getElementById("yes").onclick = ()=>{
+  playMusic();
   step = 4;
-  updateScreen(step);
+  gif.src = gifs[4] + "?v=" + Date.now();
+  text.innerText = texts[4];
   document.getElementById("no").style.display="none";
 };
 </script>
